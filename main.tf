@@ -6,7 +6,6 @@ locals {
       content_type = "application/octet-stream"
       source_file  = null
       source_uri   = null
-      attempts     = 1
       metadata     = {}
     }, b)
   ]
@@ -40,7 +39,6 @@ resource "azurerm_storage_account" "main" {
 resource "azurerm_storage_container" "main" {
   count                 = length(var.containers)
   name                  = var.containers[count.index].name
-  resource_group_name   = data.azurerm_resource_group.main.name
   storage_account_name  = azurerm_storage_account.main.name
   container_access_type = var.containers[count.index].access_type
 }
@@ -48,14 +46,12 @@ resource "azurerm_storage_container" "main" {
 resource "azurerm_storage_queue" "main" {
   count                = length(var.queues)
   name                 = var.queues[count.index]
-  resource_group_name  = data.azurerm_resource_group.main.name
   storage_account_name = azurerm_storage_account.main.name
 }
 
 resource "azurerm_storage_share" "main" {
   count                = length(var.shares)
   name                 = var.shares[count.index].name
-  resource_group_name  = data.azurerm_resource_group.main.name
   storage_account_name = azurerm_storage_account.main.name
   quota                = var.shares[count.index].quota
 }
@@ -63,14 +59,12 @@ resource "azurerm_storage_share" "main" {
 resource "azurerm_storage_table" "main" {
   count                = length(var.tables)
   name                 = var.tables[count.index]
-  resource_group_name  = data.azurerm_resource_group.main.name
   storage_account_name = azurerm_storage_account.main.name
 }
 
 resource "azurerm_storage_blob" "main" {
   count                  = length(local.blobs)
   name                   = local.blobs[count.index].name
-  resource_group_name    = data.azurerm_resource_group.main.name
   storage_account_name   = azurerm_storage_account.main.name
   storage_container_name = local.blobs[count.index].container_name
   type                   = local.blobs[count.index].type
@@ -78,7 +72,6 @@ resource "azurerm_storage_blob" "main" {
   content_type           = local.blobs[count.index].content_type
   source                 = local.blobs[count.index].source_file
   source_uri             = local.blobs[count.index].source_uri
-  attempts               = local.blobs[count.index].attempts
   metadata               = local.blobs[count.index].metadata
   depends_on             = [azurerm_storage_container.main]
 }
