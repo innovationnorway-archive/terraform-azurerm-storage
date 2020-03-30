@@ -27,8 +27,6 @@ resource "azurerm_storage_account" "main" {
   account_tier              = local.account_tier
   account_replication_type  = local.account_replication_type
   access_tier               = var.access_tier
-  enable_blob_encryption    = true
-  enable_file_encryption    = true
   enable_https_traffic_only = var.https_only
   tags                      = var.tags
 
