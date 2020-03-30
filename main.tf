@@ -71,7 +71,6 @@ resource "azurerm_storage_blob" "main" {
   content_type           = local.blobs[count.index].content_type
   source                 = local.blobs[count.index].source_file
   source_uri             = local.blobs[count.index].source_uri
-  attempts               = local.blobs[count.index].attempts
   metadata               = local.blobs[count.index].metadata
   depends_on             = [azurerm_storage_container.main]
 }
