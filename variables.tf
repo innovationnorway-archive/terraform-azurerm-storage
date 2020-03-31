@@ -22,7 +22,7 @@ variable "kind" {
 
 variable "sku" {
   type        = string
-  default     = "Standard_RAGRS"
+  default     = "Standard_LRS"
   description = "The SKU of the storage account."
 }
 
