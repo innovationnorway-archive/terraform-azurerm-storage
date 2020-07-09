@@ -40,7 +40,7 @@ variable "https_only" {
 
 variable "assign_identity" {
   type        = bool
-  default     = true
+  default     = false
   description = "Set to `true` to enable system-assigned managed identity, or `false` to disable it."
 }
 
