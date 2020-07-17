@@ -38,12 +38,6 @@ variable "https_only" {
   description = "Set to `true` to only allow HTTPS traffic, or `false` to disable it."
 }
 
-variable "assign_identity" {
-  type        = bool
-  default     = false
-  description = "Set to `true` to enable system-assigned managed identity, or `false` to disable it."
-}
-
 variable "blobs" {
   type        = list(any)
   default     = []

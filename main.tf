@@ -29,10 +29,6 @@ resource "azurerm_storage_account" "main" {
   access_tier               = var.access_tier
   enable_https_traffic_only = var.https_only
   tags                      = var.tags
-
-  identity {
-    type = var.assign_identity ? "SystemAssigned" : null
-  }
 }
 
 resource "azurerm_storage_container" "main" {
