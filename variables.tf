@@ -22,7 +22,7 @@ variable "kind" {
 
 variable "sku" {
   type        = string
-  default     = "Standard_RAGRS"
+  default     = "Standard_LRS"
   description = "The SKU of the storage account."
 }
 
@@ -36,12 +36,6 @@ variable "https_only" {
   type        = bool
   default     = true
   description = "Set to `true` to only allow HTTPS traffic, or `false` to disable it."
-}
-
-variable "assign_identity" {
-  type        = bool
-  default     = true
-  description = "Set to `true` to enable system-assigned managed identity, or `false` to disable it."
 }
 
 variable "blobs" {
@@ -81,6 +75,6 @@ variable "tables" {
 }
 
 variable "tags" {
-  type    = "map"
+  type    = map
   default = {}
 }
